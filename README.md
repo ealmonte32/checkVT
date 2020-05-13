@@ -9,7 +9,7 @@ Example for GUI request:
 `https://www.virustotal.com/gui/domain/<domain goes here>`
 
 Cons to #2:
-Sending the URL with multiple directories example https://test.example.com/onefolder/twofolder/dir3/badjsfile.js
+Sending the URL with multiple directories example `https://test.example.com/onefolder/twofolder/dir3/badjsfile.js`
 
 This is not working in the GUI based URL because it will need to remove the https:// and then it only takes in the FQDN of "test.example.com"
 
@@ -19,3 +19,4 @@ A better way might be the following:
 
 Dealing with redirects:
 
+- `<how to deal with redirects here>`

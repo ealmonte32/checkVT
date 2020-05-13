@@ -14,8 +14,8 @@ Sending the URL with multiple directories example https://test.example.com/onefo
 This is not working in the GUI based URL because it will need to remove the https:// and then it only takes in the FQDN of "test.example.com"
 
 A better way might be the following:
--Since the GUI/URL method (https://www.virustotal.com/gui/url/) uses sha256 to process the URL, we could convert the URL to the hash first, and then simply send this hash to the path after the "..gui/url/" as a postfix.
--The hash of the URLs need to have the protocol prefix (http:// or https://) and the end of the URL needs to have a forward slash "/" or else the gui/url/ detection does not work.
+- Since the GUI/URL method (https://www.virustotal.com/gui/url/) uses sha256 to process the URL, we could convert the URL to the hash first, and then simply send this hash to the path after the "..gui/url/" as a postfix.
+- The hash of the URLs need to have the protocol prefix (http:// or https://) and the end of the URL needs to have a forward slash "/" or else the gui/url/ detection does not work.
 
 Dealing with redirects:
 

@@ -3,7 +3,18 @@ checkVT (check Virus Total), simple right-click item for sending URLs directly t
 
 There can be two ways to go about this:
 1. Using the API, we would need users to create their own VirusTotal account in order to have their own api key to be used on their browser sending the requests. This would allow a max of 4 requests per minute, which is fine for most people who dont need to scan every single email they get.
-2. Using the GUI, it will simply open up another tab on their current browser and automatically plug in the URL they selected into the search field. This is much simpler and does not require users to sign up for the account which removes a barrier for users who do not want to create any accounts.
+2. Using the GUI, it will simply open up another tab on their current browser and automatically plug in the URL domain they selected into the search field. This is much simpler and does not require users to sign up for the account which removes a barrier for users who do not want to create any accounts.
 
-Ex for GUI request:
-`https://www.virustotal.com/gui/domain/<url goes here>`
+Example for GUI request:
+`https://www.virustotal.com/gui/domain/<domain goes here>`
+
+Cons to #2:
+Sending the URL with multiple directories example https://test.example.com/onefolder/twofolder/dir3/badjsfile.js
+
+This is not working in the GUI based URL because it will need to remove the https:// and then it only takes in the FQDN of "test.example.com"
+
+A better way might be the following:
+Since the GUI/URL method (https://www.virustotal.com/gui/url/) uses sha256 to process the URL, we could convert the URL to the hash first, and then simply send this hash to the path after the "..gui/url/" as a postfix.
+
+Dealing with redirects:
+

@@ -19,6 +19,6 @@ A better way might be the following:
 
 ### Dealing with redirects:
 
-- `<how to deal with redirects here>`
+- `<dealing with redirects here>` / bash scripting currently being tested as example
 
 - Remember some phishing happens with URL shortners to hide the malware file, for example `data:text/html,<script>window.location.href='https://bit.ly/3fNdafO';</script>` this whole line can be used as an href in HTML and since it does not directly begin with the HTTP/S protocol, some services don't recognize it as an actual URL.

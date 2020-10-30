@@ -1,5 +1,5 @@
 # checkVT
-checkVT (check Virus Total):
+checkVT (check Virus Total) open source project:
 
 An simple web browser extension that takes users URLs submitted via right-click and sends them directly to be checked against all engines on VirusTotal.
 

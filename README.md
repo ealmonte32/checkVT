@@ -1,7 +1,7 @@
 # checkVT
-checkVT (check Virus Total) open source project:
+checkVT (check VirusTotal) is an open source project for an independent research class.
 
-An simple web browser extension that takes users URLs submitted via right-click and sends them directly to be checked against all engines on VirusTotal.
+Plan is to create a simple web browser extension that takes users URLs submitted via right-click and sends them directly to be checked against all engines on VirusTotal with an added feature that VirusTotal doesn't have.
 
 Alternatively, users can use the web-based version to manually submit URLs: http://checkvt.epizy.com/
 

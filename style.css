@@ -1,0 +1,31 @@
+/* ealmonte */
+
+body {
+  color: white;
+  font-family: ubuntu_monoregular, Helvetica, "Trebuchet MS", Verdana, sans-serif;
+  font-size: 16px;
+  line-height:1.4;
+  background-image: url('bodybg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* add Roboto font */
+@font-face {
+    font-family: 'ubuntu_monoregular';
+    src: url('font/hosted-ubuntu-mono-webfont.woff2') format('woff2'),
+         url('font/hosted-ubuntu-mono-webfont.woff') format('woff');
+    font-weight: lighter; /*normal;*/
+    font-style: normal;
+}
+
+ /* all links */
+a, a:link, a:focus, a:visited, a:hover, a:active {
+  color: white;
+  text-decoration: none;
+}
+
+/*use for all elements */
+* {
+  box-sizing: border-box;
+}

@@ -42,8 +42,8 @@ if (empty($parse['scheme'])) {
     curl_close($ch);
 
     //echo "<script>alert('debug: finalurl after curl: $final_url');</script>"; 
-    //$vtfinal_url = $vtbase_url . hash('sha256', $final_url) . '/detection';
-    $vtfinal_url = $vtbase_url_minimal . hash('sha256', $final_url);
+    $vtfinal_url = $vtbase_url . hash('sha256', $final_url) . '/detection';
+    //$vtfinal_url = $vtbase_url_minimal . hash('sha256', $final_url);
     //$vtfinal_url_analysis = 'https://www.virustotal.com/gui/url-analysis/u-' . hash('sha256', $final_url) . '-' . time() . '/';
 
     //echo "<script>alert('debug: vtfinal url: $vtfinal_url');</script>";

@@ -20,3 +20,8 @@ Alternatively, users can use the web-based version to manually submit URLs: http
 - There is a very simple but effective way that some malicious websites hide the final destination URL they want you to land on, which `cURL` cannot retrieve, and that is the use of the javascript `<script>document.location.href` method. By using this method on their website, they essentially bypass the one aspect that `cURL` is good for, which is being able get HTTP headers, check, navigate to redirects, and view source code of websites without actually running javascript code on your machine. Javascript is one of the major ways malware, ransomware, viruses, and other malicious code finds its way onto your machine.
 
 - Some phishing happens by combining URL shortners and unusually formatted links, which they use to hide the malware file, for example `data:text/html,<script>window.location.href='https://bit.ly/3fNdafO';</script>` this whole line can be used as an href in HTML and since it does not directly begin with the HTTP/S protocol, most services don't recognize it as an actual URL. If you test that text by inserting it into your browser, it should send your browser to `https://cdn.example.com/somedir/badfile.js`.
+
+
+### Privacy Policy
+
+There is no personal or user identifiable data transmitted from the user's computer to the database that processes the URL. The selected URL that the user submits to checkVT is the only data that gets stored on the database for reporting and statistical purposes. We store the Original URL Address, the Final URL Destination Address, the VirusTotal hash ID of the URL, and the timestamp of when it was submitted.

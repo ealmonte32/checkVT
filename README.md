@@ -1,13 +1,13 @@
 # checkVT
 checkVT (check VirusTotal) is an open source project for an independent research class.
 
-Plan is to create a simple web browser extension that takes users URLs submitted via right-click and sends them directly to be checked against all engines on VirusTotal with an added feature that VirusTotal doesn't have.
+It is a simple web browser extension that takes a selected URL via context-menu and submits it directly to be checked against all engines on VirusTotal with an added feature that VirusTotal doesn't have. This added feature is basically the part of the process that tries to find the effective URL (redirect) if it exists on the URL that was submitted, and sends that URL to VirusTotal rather than the URL that was selected. This extra step increases the chances of allowing the user to see VirusTotal results for the URL host that they would have ended up at, as opposed to the original link.
 
 Alternatively, users can use the web-based version to manually submit URLs: http://checkvt.epizy.com/
 
 ### There are a few ways to do this process:
 1. Using the browser extension with the VirusTotal [API](https://developers.virustotal.com/reference), we would need users to create their own VirusTotal account in order to have their own API key to be used on their browser sending the requests. This would allow a max of 4 requests per minute, which is fine for most people who dont need to scan every single link they get or feel like checking.
-2. Using the browser extension without the API and instead using the GUI, it will simply open up a tab on their current browser and automatically plug in the URL domain they selected into the checkVT search/process field after it has been processed by the php/curl function. This is much simpler and does not require users to sign up for the account which removes a barrier for users who do not want to create any account at all.
+2. Using the browser extension without the API and instead using the GUI, it will simply open up a tab on their current browser and automatically plug in the URL domain they selected into the checkVT search/process field after it has been processed by the php/curl function. This is much simpler and does not require users to sign up for the account which removes a barrier for users who do not want to create any account at all and simply want to submit a URL.
 3. Using a web-app running php on the backend, we simply let users manually enter the URLs for processing which performs the extra effective URL action that VirusTotal does not do, which essentially means that if the HTTP headers or redirects on the website have a final destination (which malicious URLs usually do), this sends whichever final destination URL it was able to find to be checked on VT.
 
 

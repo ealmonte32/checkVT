@@ -2,7 +2,7 @@
 //connect to db
 require_once('checkvt_priv/database.php');
 
-// Get the inquiry data and assign them to variables
+// get the input data and assign them to variables
 $var_incoming_url = filter_input(INPUT_GET, 'incoming_url');
 $var_timestamp = gmdate("l F j\, Y \@ h:i:s A T"); // Prints the day(l), month(F), date(j), year(Y), time(h:i:s), AM or PM(A), timezone(T)
 $vtbase_url = 'https://www.virustotal.com/gui/url/'; // VirusTotal base URL
@@ -16,6 +16,9 @@ if (empty($var_incoming_url)) {
     echo "(Error): Incoming URL empty.";
     exit;
 }
+
+// we remove any spaces from the var_incoming_url
+$var_incoming_url = str_replace(' ', '', $var_incoming_url);
 
 // we decode the url
 $var_incoming_url = urldecode($var_incoming_url);
@@ -33,7 +36,7 @@ if (empty($parse['scheme'])) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $var_incoming_url); //provide the URL to use in the request
     curl_setopt($ch, CURLOPT_POST,1); //request an HTTP POST
-    curl_setopt( $ch, CURLOPT_USERAGENT, $user_agent); //set user agent automatically to current user one
+    curl_setopt($ch, CURLOPT_USERAGENT, $user_agent); //set user agent automatically to current user one
     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY); //use http or https
     curl_setopt($ch, CURLOPT_ENCODING, ""); //with empty string, all supported encoding types is sent
     curl_setopt($ch, CURLOPT_NOBODY, true); //do the download request without getting the body

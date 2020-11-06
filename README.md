@@ -1,5 +1,6 @@
 # checkVT
-checkVT (check VirusTotal) is an open source project developed by Emyll Almonte for an independent research class supervised by Dr. Vaibhav Anu (Assistant Professor, Department of Computer Science, Montclair State University, http://vaibhavanu.com/)
+checkVT (check VirusTotal) is an open source project developed by Emyll Almonte for an independent research class supervised by [Dr. Vaibhav Anu](http://vaibhavanu.com/) (Assistant Professor, [Department of Computer Science](https://www.montclair.edu/computer-science/), Montclair State University).
+
 
 
 It is a simple web browser extension that takes a selected URL via context-menu and submits it directly to be checked against all engines on VirusTotal with an added feature that VirusTotal doesn't have. This added feature is basically the part of the process that tries to find the effective URL (redirect) if it exists on the URL that was submitted, and sends that URL to VirusTotal rather than the URL that was selected. This extra step increases the chances of allowing the user to see VirusTotal results for the URL host that they would have ended up at, as opposed to the original link.

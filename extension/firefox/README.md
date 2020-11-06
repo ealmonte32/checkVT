@@ -1,0 +1,1 @@
+#### Mozilla Firefox browser extension

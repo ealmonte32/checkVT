@@ -11,6 +11,8 @@ require_once('checkvt_priv/database.php');
 <title>checkVT process</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
 
@@ -20,8 +22,9 @@ require_once('checkvt_priv/database.php');
 <hr style="width: 320px; border: 1px dashed white">
 <br>
 <div style="width:85%;">
-This page is used as the "processing" page because the whole process happens in a php/curl function.<br>
-We have this function accept the URL and performs a parsing process on it, then sends you to the final destination URL.
+This page is used as the "processing" page because the whole process happens behind the scenes in php/curl functions.<br>
+We have this function accept the URL and performs a parsing process on it, then sends you to the VirusTotal destination.<br>
+The browser extension does this automatically for you, but you can also manually enter a URL below to use this tool.
 </div>
 <br>
 <form action="checkvtprocess.php" method="get">
@@ -33,7 +36,7 @@ Enter the URL to process:
 
 <br><br><br>
 <a href="faq.php">FAQ</a><br>
-<b>checkVT beta version 1.3</b>
+<b>checkVT version 1.0.3</b>
 </center>
 </body>
 </html>

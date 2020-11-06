@@ -8,43 +8,52 @@ $var_timestamp = gmdate("l F j\, Y \@ h:i:s A T"); // Prints the day(l), month(F
 $vtbase_url = 'https://www.virustotal.com/gui/url/'; // VirusTotal base URL
 $vtbase_url_minimal = 'https://www.virustotal.com/old-browsers/url/'; //VirusTotal base URL minimal interface edition
 
+// we set the user agent to the current users device
+$user_agent = $_SERVER['HTTP_USER_AGENT'];
+
 // We check to make sure the incoming URL is not empty
 if (empty($var_incoming_url)) {
     echo "(Error): Incoming URL empty.";
     exit;
 }
 
-// We use the parse_url function to add the http protocol scheme on URLs that were entered manually or else we get error
+// we decode the url
+$var_incoming_url = urldecode($var_incoming_url);
+
+// we parse the url to be able to check for an empty http/https scheme
 $parse = parse_url($var_incoming_url);
+
+// add the http protocol scheme on URLs that are missing one or else we get error
 if (empty($parse['scheme'])) {
-	$var_incoming_url = 'http://' . ltrim($var_incoming_url, '/');
+	$var_incoming_url = 'http://' . ltrim($var_incoming_url);
 }
 
-
     //echo "<script>alert('debug incoming url $var_incoming_url');</script>";
-    // We use the built-in curl function to take the incoming URL, use curl to make the HTTP POST request for us
-    // then we allow it to use any protocol scheme (http or https), then we only want it to return the HEAD not body
-    // then we follow all redirects, then we get the value of the URL as a string and not output it directly
-    // finally we take that string value URL and we use with the curl effective URL function
-    // the effective URL function is used to get the final URL the user would have been redirected to
+	// we use the built-in curl function to process the URL
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $var_incoming_url); //provide the URL to use in the request
-    //curl_setopt($ch, CURLOPT_POST,1); //request an HTTP POST
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST"); //make post request specific for all subsequent requests
+    curl_setopt($ch, CURLOPT_POST,1); //request an HTTP POST
+    curl_setopt( $ch, CURLOPT_USERAGENT, $user_agent); //set user agent automatically to current user one
     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY); //use http or https
+    curl_setopt($ch, CURLOPT_ENCODING, ""); //with empty string, all supported encoding types is sent
     curl_setopt($ch, CURLOPT_NOBODY, true); //do the download request without getting the body
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); //follow redirects
-    curl_setopt($ch, CURLOPT_POSTREDIR, 3); //follow redirect with the same type of request both for 301 and 302 redirects.
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10); //sets maximum of 10 seconds for timeout of request
+    curl_setopt($ch, CURLOPT_POSTREDIR, CURL_REDIR_POST_ALL); //follow redirect with the same type of request both for 301 and 302 redirects.
+    curl_setopt($ch, CURLOPT_TIMEOUT, 15); //sets maximum of 15 seconds for timeout of request
     curl_setopt($ch, CURLOPT_RETURNTRANSFER,true); //return the transfer as a string of the return value instead of outputting it directly
     curl_exec($ch);
     $final_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL); //get the last used URL
     curl_close($ch);
 
+    // we parse the URL to only take the domain host part because there are more results of analyzed host URLs in Virus Total
+    // than with full URLs with random and infinitely changing paths which give item-not-found errors
+    $parse = parse_url($final_url); // we parse the effective final URL and only use the scheme and host
+	$final_url = $parse['scheme'] . '://' . $parse['host'] . '/'; //we need ending slash for hashed URL
+
     //echo "<script>alert('debug: finalurl after curl: $final_url');</script>"; 
-    $vtfinal_url = $vtbase_url . hash('sha256', $final_url) . '/detection';
     //$vtfinal_url = $vtbase_url_minimal . hash('sha256', $final_url);
-    //$vtfinal_url_analysis = 'https://www.virustotal.com/gui/url-analysis/u-' . hash('sha256', $final_url) . '-' . time() . '/';
+    //$vtfinal_url_analysis = 'https://www.virustotal.com/gui/url-analysis/u-' . hash('sha256', $final_url) . '-' . time() . '/analysis';
+    $vtfinal_url = $vtbase_url . hash('sha256', $final_url) . '/details'; // we set to details tab to show user some helpful info
 
     //echo "<script>alert('debug: vtfinal url: $vtfinal_url');</script>";
     //echo "<script>alert('debug: vtfinal analysis: $vtfinal_url_analysis');</script>"; 

@@ -35,11 +35,24 @@ browser.contextMenus.onClicked.addListener(function(item, tab) {
 
   // if the item right clicked is a link
   if (item.linkUrl){
-  	let uri = item.linkUrl;
-  	let uri_decode = decodeURIComponent(uri); //decode URI
-  	item.linkUrl = uri_decode;
-	let url = 'http://checkvt.epizy.com/checkvtprocess.php?incoming_url=' + item.linkUrl;
-	browser.tabs.create({url: url, index: tab.index + 1});
+  	// if url is a google.com search query, take the url= part only
+  	if (/^https:\/\/www.google.com(.*)/.test(item.linkUrl)){
+  	  let google_query = item.linkUrl;
+  	  console.log('debug: ' + google_query);
+  	  let url_query_match = google_query.match(/url=(.*)/);
+	  let parsed_url_query = url_query_match.toString().replace('url=', '');
+  	  console.log('debug: ' + parsed_url_query);
+  	  let uri = parsed_url_query;
+  	  let uri_decode = decodeURIComponent(uri); //decode URI
+  	  item.linkUrl = uri_decode;
+	  let url = 'http://checkvt.epizy.com/checkvtprocess.php?incoming_url=' + item.linkUrl;
+	  browser.tabs.create({url: url, index: tab.index + 1});
+  	} else {
+  		let uri = item.linkUrl;
+  		let uri_decode = decodeURIComponent(uri); //decode URI
+  		item.linkUrl = uri_decode;
+		let url = 'http://checkvt.epizy.com/checkvtprocess.php?incoming_url=' + item.linkUrl;
+		browser.tabs.create({url: url, index: tab.index + 1});
+		}
 	}
-
 });

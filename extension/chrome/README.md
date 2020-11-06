@@ -1,1 +1,1 @@
-#### Google Chrome extension
+#### Google Chrome browser extension

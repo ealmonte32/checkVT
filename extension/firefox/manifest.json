@@ -1,0 +1,21 @@
+  {
+  	"manifest_version": 2,
+  	"name": "checkVT v:firefox",
+  	"version": "1.0.3",
+  	"description": "checkVT sends the selected URL through a parsing process, then to VirusTotal to check if it has been analyzed for malware.",
+  	"permissions": [
+  		"contextMenus"
+  	],
+  	"background": {
+  		"scripts": ["background.js"]
+  	},
+  	"icons": {
+  		"16": "images/checkvt_icon16.png",
+  		"32": "images/checkvt_icon32.png",
+  		"48": "images/checkvt_icon48.png"
+  	},
+  	"browser_action": {
+  		"default_icon": "images/checkvt_icon48.png",
+  		"default_popup": "popup.html"
+  	}
+  }

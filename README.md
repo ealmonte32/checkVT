@@ -24,6 +24,24 @@ Alternatively, users can use the web-based version to manually submit URLs: http
 - Some phishing happens by combining URL shortners and unusually formatted links, which they use to hide the malware file, for example `data:text/html,<script>window.location.href='https://bit.ly/3fNdafO';</script>` this whole line can be used as an href in HTML and since it does not directly begin with the HTTP/S protocol, most services don't recognize it as an actual URL. If you test that text by inserting it into your browser, it should send your browser to `https://cdn.example.com/somedir/badfile.js`.
 
 
+### Release notes:
+Version 1.0.3:
+- Initial public release
+- Improved URL decoding
+- Added google search result filtering to send the URL after the "url=" string and not "google.com" to process
+- Improved detection of a link or a text-based URL when both were selected
+
+
+
+Version 1.0.0-1.0.2:
+- Initial beta release
+- Added option for curl to respect RFC 7231/6.4.2 and not convert POST requests into GET requests when following 301, 302, and 303 redirections
+- Added HTTP user agent header to processing because some servers act different if the user agent is not supplied
+- Added all encoding option to send gzip, deflate, etc on request
+- Added parsing of URL scheme
+
+___
+
 ### Privacy Policy
 
 There is no personal or user identifiable data transmitted from the user's computer to the database that processes the URL. The selected URL that the user submits to checkVT is the only data that gets stored on the database for reporting and statistical purposes. We store the Original URL Address, the Final URL Destination Address, the VirusTotal hash ID of the URL, and the timestamp of when it was submitted.

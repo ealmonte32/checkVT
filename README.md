@@ -45,7 +45,7 @@ Version 1.0.3:
 
 Version 1.0.0-1.0.2:
 - Initial beta release
-- Added option for curl to respect RFC 7231/6.4.2 and not convert POST requests into GET requests when following 301, 302, and 303 redirections
+- Added option for curl to respect GET requests when following 301, 302, and 303 redirections
 - Added HTTP user agent header to processing because some servers act different if the user agent is not supplied
 - Added all encoding option to send gzip, deflate, etc on request
 - Added parsing of URL scheme

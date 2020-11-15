@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ealmonte32/checkVT/master/checkVT_logo_icons/android-chrome-192x192.png">
+  <img src="https://raw.githubusercontent.com/ealmonte32/checkVT/master/checkVT_logo_icons/checkvt_icon-128x128.png">
 </p>
 
 # checkVT

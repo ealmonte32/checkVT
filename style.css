@@ -25,6 +25,24 @@ a, a:link, a:focus, a:visited, a:hover, a:active {
   text-decoration: none;
 }
 
+.button {
+  background-color: #d7eaf4;
+  border: none;
+  color: black;
+  padding: 4px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #afd6e9;
+}
+
 /*use for all elements */
 * {
   box-sizing: border-box;

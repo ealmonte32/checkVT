@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ealmonte32/checkVT/master/images/checkvt_icon48.png">
+</p>
+
 # checkVT
 checkVT (check VirusTotal) is an open source project developed by Emyll Almonte for an independent research class supervised by [Dr. Vaibhav Anu](http://vaibhavanu.com/) (Assistant Professor, [Department of Computer Science](https://www.montclair.edu/computer-science/), Montclair State University).
 
@@ -25,6 +29,12 @@ Alternatively, users can use the web-based version to manually submit URLs: http
 
 
 ### Release notes:
+Version 1.0.4:
+- Added checkVT URL search field directly onto add-on/extension popup for quick access
+- Improved URL cleaning of whitespace
+- New logo
+
+
 Version 1.0.3:
 - Initial public release
 - Improved URL decoding

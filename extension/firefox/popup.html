@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
 <style>
-a:link {
+a, a:link, a:focus, a:visited, a:hover, a:active {
   color: white;
-  background-color: transparent;
   text-decoration: none;
-}
-
-a:visited {
+  }
+div {
+  width: 100%;
+  }
+body {
   color: white;
-  background-color: transparent;
+  line-height:1.4;
+  padding: 5px;
+  }
+img.rounded-corners {
+  border-radius: 6px;
+  }
+.button {
+  background-color: #d7eaf4;
+  border: none;
+  color: black;
+  padding: 4px 16px;
+  text-align: center;
   text-decoration: none;
-}
-
-a:hover {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:active {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px auto;
+  cursor: pointer;
+  border-radius: 5px;
+  }
+.button:hover {
+  background-color: #afd6e9;
+  }
 </style> 
 </head>
 <body bgcolor="#014f8f">
+<center><img src="/images/checkvt_icon48.png" class="rounded-corners"></center>
+<div>
+<form action="http://localhost/checkvt/checkvtprocess.php" method="get" target="_blank">
+<p>
+Enter the URL to process:
+<br><input type="text" name="incoming_url" size="40" autofocus required><br>
+<br><input type="submit" class="button" value="Submit"> <input type="reset" class="button" value="Clear">
+</form>
+</div>
+<br>
 <a href="https://github.com/ealmonte32/checkVT" target="_blank">About checkVT</a>
 </body>
 </html>

@@ -1,5 +1,5 @@
 // ealmonte32
-// v:firefox
+// v:mf
 
 browser.contextMenus.create({
 	"id": "id_checkVT",

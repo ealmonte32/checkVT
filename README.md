@@ -9,7 +9,7 @@ checkVT (check VirusTotal) is an open source project developed by Emyll Almonte 
 
 It is a simple, yet useful, web browser extension that takes a selected URL via context-menu and submits it directly to be checked against all engines on VirusTotal with an added feature that VirusTotal doesn't have. This added feature is basically the part of the process that tries to find the effective URL (redirect) if it exists on the URL that was submitted, and sends that URL to VirusTotal rather than the URL that was selected. This extra step increases the chances of allowing the user to see VirusTotal results for the URL host that they would have ended up at, as opposed to the original link.
 
-Alternatively, users can use the web-based version to manually submit URLs: http://checkvt.epizy.com/
+Alternatively, users can use the web-based version to manually submit URLs: https://checkvt.epizy.com/
 
 ### There are a few ways to do this process:
 1. Using the browser extension with the VirusTotal [API](https://developers.virustotal.com/reference), we would need users to create their own VirusTotal account in order to have their own API key to be used on their browser sending the requests. This would allow a max of 4 requests per minute, which is fine for most people who dont need to scan every single link they get or feel like checking.

@@ -19,9 +19,9 @@ Alternatively, users can use the web-based version to manually submit URLs: http
 
 
 ### Limitations:
-- When you use the checkVT browser extension or the web-app, it essentially parses links checking for redirects along the way and uses sha256 hash to create the unique ID of this URL that VirusTotal looks for in their database. The way that checkVT works with the VirusTotal system is that if you submit a URL (which gets converted into its sha256 hash form) and their database does not have a record for this hash being analyzed, it returns the "Item not found" error. The problem here is that a hash is unique and any single character difference in the source will create a completely unique and different hash. So for example if you wanted to submit the URL `http://www.somewebsite.com/user1`, but their system has a record for `http://www.somewebsite.com/user2`, you will get an error because the sha256 hash of `http://www.somewebsite.com/user1` is `4806811b6407cbd545d753d87294889ac537042f4a21c813cba30219acdbf23a` and that of `http://www.somewebsite.com/user2` is `9d2fb06b5f64b4faa8da5e7b27c778c9fa182b1bc2ec3ddecf87ea7bfd3e8425`. As you can see, completely different just by changing user1 to user2.
+- (Affects v1.0.4 and below) When you use the checkVT browser extension or the web-app, it essentially parses links checking for redirects along the way and uses sha256 hash to create the unique ID of this URL that VirusTotal looks for in their database. The way that checkVT works with the VirusTotal system is that if you submit a URL (which gets converted into its sha256 hash form) and their database does not have a record for this hash being analyzed, it returns the "Item not found" error. The problem here is that a hash is unique and any single character difference in the source will create a completely unique and different hash. So for example if you wanted to submit the URL `http://www.somewebsite.com/user1`, but their system has a record for `http://www.somewebsite.com/user2`, you will get an error because the sha256 hash of `http://www.somewebsite.com/user1` is `4806811b6407cbd545d753d87294889ac537042f4a21c813cba30219acdbf23a` and that of `http://www.somewebsite.com/user2` is `9d2fb06b5f64b4faa8da5e7b27c778c9fa182b1bc2ec3ddecf87ea7bfd3e8425`. As you can see, completely different just by changing user1 to user2.
 
-- Since the current version of checkVT process relies on VirusTotal having the URL already analyzed and we sometimes get an "Item not found" error as explained above, I thought that the best way to reach a balance with this issue would be to only submit the link's hostname/domain `http://www.somewebsite.com`, and not everything that goes after it. By choosing this method, we reduce the chances of almost always getting an "Item not found" (URL not analyzed) error, and you still get to see if the domain of the website you are about to click on is potentially unsafe or suspicious. *This limitation of only checking the host/domain will change and improved to full URL search on release of version 2.0.0*.
+- (Affects v1.0.4 and below) Since the current version of checkVT process relies on VirusTotal having the URL already analyzed and we sometimes get an "Item not found" error as explained above, I thought that the best way to reach a balance with this issue would be to only submit the link's hostname/domain `http://www.somewebsite.com`, and not everything that goes after it. By choosing this method, we reduce the chances of almost always getting an "Item not found" (URL not analyzed) error, and you still get to see if the domain of the website you are about to click on is potentially unsafe or suspicious. *This limitation of only checking the host/domain will change and improved to full URL search on release of version 2.0.0*.
 
 - There is a very simple but effective way that some malicious websites hide the final destination URL they want you to land on, which `curl` cannot retrieve, and that is the use of the javascript `<script>document.location.href` method. By using this method on their website, they essentially bypass the one aspect that `curl` is good for, which is being able get HTTP headers, check, navigate to redirects, and view source code of websites without actually running javascript code on your machine. Javascript is one of the major ways malware, ransomware, viruses, and other malicious code finds its way onto your machine.
 
@@ -29,6 +29,19 @@ Alternatively, users can use the web-based version to manually submit URLs: http
 
 
 ### Release notes:
+Version 2.0.0:
+- URLs are now submitted in full form of 'scheme' (http/https) + 'host' + 'path'
+- URLs being submitted in full rather than 'scheme' + 'host' being checked for previous analyzation provides
+  a greater form of protection by returning a wider range of results
+- Unlike previous versions where it just said "Item-Not-Found" for URLs that had not been analyzed,
+  your never-before submitted URL is now automatically sent to be analyzed
+
+Known Issues:
+- When a never-before submitted URL is sent through, the VirusTotal on-demand analysis status process might flicker many times
+  and VirusTotal can take minutes to finish analyzing and results wont show until all their engines have finished analyzing the URL
+- Users might be prompted to complete a CAPTCHA from VirusTotal on some on-demand scans due to limits of submissions per minute
+
+
 Version 1.0.4:
 - Added checkVT URL search field directly onto add-on/extension popup for quick access
 - Improved URL cleaning of whitespace

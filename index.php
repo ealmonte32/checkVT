@@ -16,11 +16,10 @@ require_once('checkvt_priv/database.php');
 </head>
 <body>
 <center>
-<h2>checkVT processing...</h2>
+<img src="checkvt_icon-64x64.png" class="rounded-corners">
 <hr style="width: 320px; border: 1px dashed white">
-<br>
 <div style="width:85%;">
-This page is used as the "processing" page because the whole process happens behind the scenes in php/curl functions.<br>
+This website hosts the "processing" page because the URL parsing process happens behind the scenes in PHP/curl functions.<br>
 These functions accept the URL and perform a parsing process on it, then sends you to the VirusTotal destination.<br>
 The browser extension does this automatically for you, but you can also manually enter a URL below to use this tool.
 </div>
@@ -33,7 +32,7 @@ Enter the URL to process:
 </form>
 <br>
 <a href="faq.php">FAQ</a><br>
-<b>checkVT version 1.0.3</b>
+<b>checkVT version 2.0.0</b>
 <br><br>
 </center>
 </body>

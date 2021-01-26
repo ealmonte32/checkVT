@@ -31,14 +31,11 @@ Alternatively, users can use the web-based version to manually submit URLs: http
 ### Release notes:
 Version 2.0.0:
 - URLs are now submitted in full form of 'scheme' (http/https) + 'host' + 'path'
-- URLs being submitted in full rather than 'scheme' + 'host' being checked for previous analyzation provides
-  a greater form of protection by returning a wider range of results
-- Unlike previous versions where it just said "Item-Not-Found" for URLs that had not been analyzed,
-  your never-before submitted URL is now automatically sent to be analyzed
+- URLs being submitted in full rather than 'scheme' + 'host' being checked for previous analyzation provides a greater form of protection by returning a wider range of results
+- Unlike previous versions where it just said "Item-Not-Found" for URLs that had not been analyzed, your never-before submitted URL is now automatically sent to be analyzed
 
 Known Issues:
-- When a never-before submitted URL is sent through, the VirusTotal on-demand analysis status process might flicker many times
-  and VirusTotal can take minutes to finish analyzing and results wont show until all their engines have finished analyzing the URL
+- When a never-before submitted URL is sent through, the VirusTotal on-demand analysis status process might flicker many times and VirusTotal can take minutes to finish analyzing and results wont show until all their engines have finished analyzing the URL
 - Users might be prompted to complete a CAPTCHA from VirusTotal on some on-demand scans due to limits of submissions per minute
 
 
@@ -53,7 +50,6 @@ Version 1.0.3:
 - Improved URL decoding
 - Added google search result filtering to send the URL after the "url=" string and not "google.com" to process
 - Improved detection of a link or a text-based URL when both were selected
-
 
 
 Version 1.0.0-1.0.2:

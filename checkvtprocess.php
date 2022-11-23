@@ -8,6 +8,10 @@ $var_timestamp = gmdate("l F j\, Y \@ h:i:s A T"); // Prints the day(l), month(F
 //$vtbase_gui_url = 'https://www.virustotal.com/gui/url/'; // VirusTotal base GUI URL
 $vtbase_submit_url = 'https://www.virustotal.com/url/submission/?force=1&url='; // VirusTotal base submission URL
 
+// recent changes to append
+// the test URL submission needs to be in this format: https://www.virustotal.com/gui/search/http%253A%252F%252Fwww.almonte.com
+// this needs to be a literal string inserted into the URL: %253A%252F%252F
+
 // We check to make sure the incoming URL is not empty
 if (empty($var_incoming_url)) {
 	echo "(Error): Incoming URL empty.";

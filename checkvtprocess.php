@@ -1,21 +1,16 @@
 <?php
 //connect to db
-require_once('checkvt_priv/database.php');
+require('checkvt_priv/database.php');
 
 // get the input data and assign them to variables
 $var_incoming_url = filter_input(INPUT_GET, 'incoming_url');
 $var_timestamp = gmdate("l F j\, Y \@ h:i:s A T"); // Prints the day(l), month(F), date(j), year(Y), time(h:i:s), AM or PM(A), timezone(T)
-//$vtbase_gui_url = 'https://www.virustotal.com/gui/url/'; // VirusTotal base GUI URL
-$vtbase_submit_url = 'https://www.virustotal.com/url/submission/?force=1&url='; // VirusTotal base submission URL
-
-// recent changes to append
-// the test URL submission needs to be in this format: https://www.virustotal.com/gui/search/http%253A%252F%252Fwww.almonte.com
-// this needs to be a literal string inserted into the URL: %253A%252F%252F
+$vtbase_submit_url = 'https://www.virustotal.com/gui/search/'; // VirusTotal base submission URL
 
 // We check to make sure the incoming URL is not empty
 if (empty($var_incoming_url)) {
-	echo "(Error): Incoming URL empty.";
-	exit;
+    echo "(Error): Incoming URL empty.";
+    exit;
 }
 
 // we set the user agent to curl version (testing showed HTTP2 TLS requests only worked if curl agent was set)
@@ -28,8 +23,8 @@ $var_incoming_url = trim($var_incoming_url);
 // we decode the url
 $var_incoming_url = urldecode($var_incoming_url);
 
-// we replace any spaces in the path with + character
-$var_incoming_url = str_replace(' ', '+', $var_incoming_url);
+// just in case we decode the url again
+$var_incoming_url = urldecode($var_incoming_url);
 
 // we parse the url to be able to check for an empty http/https scheme
 $parse = parse_url($var_incoming_url);
@@ -54,14 +49,13 @@ curl_exec($ch);
 $final_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL); //get the last used URL
 curl_close($ch);
 
-//echo "<script>alert('(debug) final_url from curl effective function:\\n $final_url');</script>"; 
+// we perform some manual encoding for '://'
+$final_url = preg_replace('/:\/\//', '%253A%252F%252F', $final_url);
+
+// we perform another encoding for the rest of the '/'
+$final_url = preg_replace('/\//', '%252F', $final_url);
 
 $vt_triggerscan = $vtbase_submit_url . $final_url; // trigger scan of full URL
-//echo "<script>alert('(debug) vt_triggerscan current url: $vt_triggerscan');</script>";
-//echo "<script>alert('(debug) vt_triggerscan effective url: $vt_triggerscan_effective_url');</script>"; 
-//echo "<script>alert('(debug) triggerscan url: $vt_triggerscan');</script>"; 
-//$vtfinal_url = $vtbase_submit_url . $final_url; // we open the gui with the final url as the submission
-//$vtfinal_url = $vtbase_gui_url . hash('sha256', $final_url) . '/summary';
 
 // Insert the URL into the database
 $query = 'INSERT INTO urls_processed (URL_Orig_Address, URL_Final_Address, URL_VT_Address, URL_Processed_Date) VALUES (:incoming_url, :final_url, :vt_triggerscan, :process_timestamp)';

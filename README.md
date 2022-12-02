@@ -27,6 +27,13 @@ Alternatively, users can use the web-based version to manually submit URLs: http
 
 
 ### Release notes:
+Version 2.3:
+- Minor JavaScript linting fixes
+- Minor improvements to reduce lines of code
+- Minor URL encoding fixes
+- Popup localhost line fix
+
+
 Version 2.0.0:
 - URLs are now submitted in full form of 'scheme' (http/https) + 'host' + 'path'
 - URLs being submitted in full rather than 'scheme' + 'host' being checked for previous analyzation provides a greater form of protection by returning a wider range of results

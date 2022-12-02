@@ -6,11 +6,7 @@ require('checkvt_priv/database.php');
 $var_incoming_url = filter_input(INPUT_GET, 'incoming_url');
 $var_timestamp = gmdate("l F j\, Y \@ h:i:s A T"); // Prints the day(l), month(F), date(j), year(Y), time(h:i:s), AM or PM(A), timezone(T)
 //$vtbase_gui_url = 'https://www.virustotal.com/gui/url/'; // VirusTotal base GUI URL
-//$vtbase_submit_url = 'https://www.virustotal.com/url/submission/?force=1&url='; // VirusTotal base submission URL
-$vtbase_submit_url = 'https://www.virustotal.com/gui/search/';
-// the test URL submission needs to be in this format: https://www.virustotal.com/gui/search/http%253A%252F%252Fwww.almonte.com
-// this needs to be a literal string inserted into the URL: %253A%252F%252F (url encoded twice)
-// using the function preg_replace('/:\/\//', '%253A%252F%252F', $str);
+$vtbase_submit_url = 'https://www.virustotal.com/url/submission/?force=1&url='; // VirusTotal base submission URL
 
 // We check to make sure the incoming URL is not empty
 if (empty($var_incoming_url)) {
@@ -25,19 +21,11 @@ $user_agent = 'curl/7.54.0';
 $var_incoming_url = preg_replace('/\s+/', ' ', $var_incoming_url);
 $var_incoming_url = trim($var_incoming_url);
 
-// we need to decode the url before parsing it through curl
+// we decode the url
 $var_incoming_url = urldecode($var_incoming_url);
 
-// we should escape the URL
-//$var_incoming_url = curl_escape($var_incoming_url)
-
-// just in case we decode the url again
-//$var_incoming_url = urldecode($var_incoming_url);
-
-//echo "<script>alert('(debug) var_incoming_url after url decode function:\\n $var_incoming_url');</script>"; 
-
-// we replace any spaces in the path with %20 because it is proper for URI
-//$var_incoming_url = str_replace(' ', '%20', $var_incoming_url);
+// we replace any spaces in the path with + character
+$var_incoming_url = str_replace(' ', '+', $var_incoming_url);
 
 // we parse the url to be able to check for an empty http/https scheme
 $parse = parse_url($var_incoming_url);
@@ -49,15 +37,14 @@ if (empty($parse['scheme'])) {
 
 // we use the built-in curl function to process the URL
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "$var_incoming_url"); //provide the URL to use in the request
+curl_setopt($ch, CURLOPT_URL, $var_incoming_url); //provide the URL to use in the request
 curl_setopt($ch, CURLOPT_HTTPGET, true);
-//curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_2TLS);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //dont try to verify peer certificate
-curl_setopt($ch, CURLOPT_USERAGENT, "$user_agent"); //set user agent
+curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_2TLS);
+curl_setopt($ch, CURLOPT_USERAGENT, $user_agent); //set user agent
 curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY); //use http or https
 curl_setopt($ch, CURLOPT_ENCODING, ''); //with empty string, all supported encoding types is sent
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); //follow redirects
-curl_setopt($ch, CURLOPT_TIMEOUT, 15); //sets maximum seconds for timeout of request
+curl_setopt($ch, CURLOPT_TIMEOUT, 10); //sets maximum of 10 seconds for timeout of request
 curl_setopt($ch, CURLOPT_RETURNTRANSFER,true); //return the transfer as a string of the return value instead of outputting it directly
 curl_exec($ch);
 $final_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL); //get the last used URL
@@ -65,26 +52,9 @@ curl_close($ch);
 
 //echo "<script>alert('(debug) final_url from curl effective function:\\n $final_url');</script>"; 
 
+//$parse = parse_url($final_url); // we parse the effective final URL and only use the scheme and host
 //$final_url = $parse['scheme'] . '://' . $parse['host'] . '/'; //we need ending slash for hashed URL
 //$vtfinal_url = $vtbase_url . hash('sha256', $final_url) . '/summary'; // we set to details tab to show user some helpful info
-
-// we perform some manual encoding for '://'
-//$final_url = preg_replace('/:\/\//', '%253A%252F%252F', $final_url);
-// testing rawurlencode
-$final_url = rawurlencode($final_url);
-// again required
-$final_url = rawurlencode($final_url);
-
-// we perform another encoding for the rest of the '/'
-//$final_url = preg_replace('/\//', '%252F', $final_url);
-
-
-//$final_url = preg_replace('/https:\/\//', '', $final_url);
-
-// we need to encode the url path part with rawurl
-//$final_url = urlencode($final_url);
-
-//echo "<script>alert('(debug) final_url after rawurlencode:\\n $final_url');</script>"; 
 
 $vt_triggerscan = $vtbase_submit_url . $final_url; // trigger scan of full URL
 //echo "<script>alert('(debug) vt_triggerscan current url: $vt_triggerscan');</script>";

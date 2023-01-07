@@ -32,7 +32,7 @@ Enter the URL to process:
 </form>
 <br>
 <a href="faq.php">FAQ</a><br>
-<b>checkVT version 2.0.0</b>
+<b>checkVT version 2.3.1</b>
 <br><br>
 </center>
 </body>

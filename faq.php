@@ -31,7 +31,7 @@ require_once('checkvt_priv/database.php');
 </ul>
 <br><br><br>
 <a href=".">Back</a><br>
-<b>checkVT version 2.0.0</b>
+<b>checkVT version 2.3.1</b>
 <br>
 </center>
 </body>

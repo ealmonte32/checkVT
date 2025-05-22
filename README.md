@@ -9,7 +9,7 @@ It is a simple, yet useful, web browser addon/extension that takes a selected UR
 
 Browser addon/extension available for [Google Chrome](https://chrome.google.com/webstore/detail/checkvt/fppeaohnnimpokhckkjfdafcpkoibjbp), [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/checkvt/njamaljfifcgfeifjjoimemkkbojfhij), and [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/checkvt/). New releases will be uploaded directly to their respective browser addon store.
 
-Alternatively, users can use the web-based version to manually submit URLs: http://checkvt.epizy.com/
+Alternatively, users can use the web-based version to manually submit URLs: https://checkvt.epizy.com/
 
 ### After brainstorming of possible ways to create this process, these were the most sensible options:
 1. Using the browser extension with the VirusTotal [API](https://developers.virustotal.com/reference), we would need users to create their own VirusTotal account in order to have their own API key to be used on their browser sending the requests. This would allow a max of 4 requests per minute, which is fine for most people who dont need to scan every single link they get or feel like checking.

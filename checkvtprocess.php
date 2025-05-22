@@ -6,7 +6,7 @@ require('checkvt_priv/database.php');
 $var_incoming_url = filter_input(INPUT_GET, 'incoming_url');
 $var_timestamp = gmdate("l F j\, Y \@ h:i:s A T"); // Prints the day(l), month(F), date(j), year(Y), time(h:i:s), AM or PM(A), timezone(T)
 //$vtbase_gui_url = 'https://www.virustotal.com/gui/url/'; // VirusTotal base GUI URL
-$vtbase_submit_url = 'https://www.virustotal.com/url/submission/?force=1&url='; // VirusTotal base submission URL
+$vtbase_submit_url = 'https://www.virustotal.com/url/submission/?force=1&url='; // VirusTotal base submission URL (may not work after VT updated their site)
 
 // We check to make sure the incoming URL is not empty
 if (empty($var_incoming_url)) {
@@ -56,7 +56,7 @@ curl_close($ch);
 //$final_url = $parse['scheme'] . '://' . $parse['host'] . '/'; //we need ending slash for hashed URL
 //$vtfinal_url = $vtbase_url . hash('sha256', $final_url) . '/summary'; // we set to details tab to show user some helpful info
 
-$vt_triggerscan = $vtbase_submit_url . $final_url; // trigger scan of full URL
+$vt_triggerscan = $vtbase_submit_url . $final_url . '%1F'; // trigger scan of full URL with added ASCII unit separator which is required to properly submit certain URLs
 //echo "<script>alert('(debug) vt_triggerscan current url: $vt_triggerscan');</script>";
 //echo "<script>alert('(debug) vt_triggerscan effective url: $vt_triggerscan_effective_url');</script>"; 
 //echo "<script>alert('(debug) triggerscan url: $vt_triggerscan');</script>"; 

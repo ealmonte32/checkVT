@@ -1,7 +1,7 @@
   {
   	"manifest_version": 2,
   	"name": "checkVT",
-  	"version": "2.0.0",
+  	"version": "2.3.2",
   	"description": "checkVT sends the selected URL through a parsing process, then to VirusTotal to check if it has been analyzed for malware.",
   	"permissions": [
   		"contextMenus"

@@ -5,11 +5,14 @@ header("X-Content-Type-Options: nosniff");
 require_once('checkvt_priv/database.php');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="description" content="checkVT URL checker">
+<meta name="keywords" content="checkVT, Check VirusTotal, URL checker">
+<meta name="author" content="Emyll Almonte">
 <title>checkVT FAQ</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -31,7 +34,7 @@ require_once('checkvt_priv/database.php');
 </ul>
 <br><br><br>
 <a href=".">Back</a><br>
-<b>checkVT version 2.3.1</b>
+<b>checkVT version 2.3.2</b>
 <br>
 </center>
 </body>

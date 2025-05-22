@@ -29,6 +29,9 @@ Alternatively, users can use the web-based version to manually submit URLs: http
 
 
 ### Release notes:
+Version 2.3.2:
+- Use HTTPS protocol in form action
+
 Version 2.3:
 - Minor JavaScript linting fixes
 - Minor improvements to reduce lines of code

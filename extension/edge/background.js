@@ -12,13 +12,13 @@ var url_address;
 var url_query_match;
 
 // main
-browser.contextMenus.create({
+chrome.contextMenus.create({
     "id": "id_checkVT",
     "title": "Send to checkVT",
     "contexts": ["selection", "link"]
 });
 
-browser.contextMenus.onClicked.addListener(function (item, tab) {
+chrome.contextMenus.onClicked.addListener(function (item, tab) {
     "use strict";
 
     // if both a link and plaintext selection were detected, we remove the plaintext
@@ -37,10 +37,10 @@ browser.contextMenus.onClicked.addListener(function (item, tab) {
             url_scheme = 'http://';
             parsed_url = url_scheme.concat(item.selectionText);
             url_address = 'https://checkvt.epizy.com/checkvtprocess.php?incoming_url=' + parsed_url;
-            browser.tabs.create({url: url_address, index: tab.index + 1});
+            chrome.tabs.create({url: url_address, index: tab.index + 1});
         } else {
             url_address = 'https://checkvt.epizy.com/checkvtprocess.php?incoming_url=' + item.selectionText;
-            browser.tabs.create({url: url_address, index: tab.index + 1});
+            chrome.tabs.create({url: url_address, index: tab.index + 1});
         }
     }
 
@@ -53,11 +53,11 @@ browser.contextMenus.onClicked.addListener(function (item, tab) {
             parsed_url_query = url_query_match.toString().replace('url=', '');
             item.linkUrl = encodeURIComponent(parsed_url_query); //encode URI
             url_address = 'https://checkvt.epizy.com/checkvtprocess.php?incoming_url=' + item.linkUrl;
-            browser.tabs.create({url: url_address, index: tab.index + 1});
+            chrome.tabs.create({url: url_address, index: tab.index + 1});
         } else {
             item.linkUrl = encodeURIComponent(item.linkUrl); //encode URI
             url_address = 'https://checkvt.epizy.com/checkvtprocess.php?incoming_url=' + item.linkUrl;
-            browser.tabs.create({url: url_address, index: tab.index + 1});
+            chrome.tabs.create({url: url_address, index: tab.index + 1});
         }
     }
 });

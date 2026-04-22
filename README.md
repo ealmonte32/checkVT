@@ -18,25 +18,25 @@ Alternatively, users can use the web-based version to manually submit URLs: http
 
 
 
-### Release notes:
-Version 2.3.2.2:
+## Release notes:
+#### Version 2.3.2.2:
 - Changed User-Agent from "curl/7.54.0", to "Mozilla/5.0" in order to improve detection and submission of phishing URLs because some phishing websites were checking for curl as the user-agent and responding to the GET request with a generic non-phishing domain in the redirect to avoid being scanned by automated tools.
 - Added an ASCII unit separator to the trigger scan variable which is required to properly submit certain URLs in full.
 - Added the automatic removal of brackets from context-selected URLs sent to checkVT.
+<br>
 
-
-Version 2.3.2:
+#### Version 2.3.2:
 - Use HTTPS protocol in form action
+<br>
 
-
-Version 2.3:
+#### Version 2.3:
 - Minor JavaScript linting fixes
 - Minor improvements to reduce lines of code
 - Minor URL encoding fixes
 - Popup localhost line fix
+<br>
 
-
-Version 2.0.0:
+#### Version 2.0.0:
 - URLs are now submitted in full form of 'scheme' (http/https) + 'host' + 'path'
 - URLs being submitted in full rather than 'scheme' + 'host' being checked for previous analyzation provides a greater form of protection by returning a wider range of results
 - Unlike previous versions where it just said "Item-Not-Found" for URLs that had not been analyzed, your never-before submitted URL is now automatically sent to be analyzed
@@ -44,22 +44,22 @@ Version 2.0.0:
 Known Issues:
 - When a never-before submitted URL is sent through, the VirusTotal on-demand analysis status process might flicker many times and VirusTotal can take minutes to finish analyzing and results wont show until all their engines have finished analyzing the URL
 - Users might be prompted to complete a CAPTCHA from VirusTotal on some on-demand scans due to limits of submissions per minute
+<br>
 
-
-Version 1.0.4:
+#### Version 1.0.4:
 - Added checkVT URL search field directly onto add-on/extension popup for quick access
 - Improved URL cleaning of whitespace
 - New logo
+<br>
 
-
-Version 1.0.3:
+#### Version 1.0.3:
 - Initial public release
 - Improved URL decoding
 - Added google search result filtering to send the URL after the "url=" string and not "google.com" to process
 - Improved detection of a link or a text-based URL when both were selected
+<br>
 
-
-Version 1.0.0-1.0.2:
+#### Version 1.0.0-1.0.2:
 - Initial beta release
 - Added option for curl to respect GET requests when following 301, 302, and 303 redirections
 - Added HTTP user agent header to processing because some servers act different if the user agent is not supplied

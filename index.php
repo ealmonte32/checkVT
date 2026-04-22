@@ -35,7 +35,7 @@ Enter the URL to process:
 </form>
 <br>
 <a href="faq.php">FAQ</a><br>
-<b>checkVT version 2.3.2</b>
+<b>checkVT version 2.3.2.2</b>
 <br><br>
 </center>
 </body>
